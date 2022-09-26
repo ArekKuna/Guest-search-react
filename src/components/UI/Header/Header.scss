@@ -1,0 +1,25 @@
+@import "../../../sass/variables";
+
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: $color-primary;
+    padding: 0 1rem;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        margin-left: 2rem ;
+    }
+
+    &__text {
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $color-white;
+        margin: 0;
+    }
+}

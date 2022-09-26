@@ -1,0 +1,10 @@
+@import "../../../sass/variables";
+
+.main {
+    width: $max-size;
+    min-height: 100vh;
+    height: $max-size;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-grey-light;
+}

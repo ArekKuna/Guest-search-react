@@ -1,0 +1,43 @@
+@import "../../../sass/variables";
+
+.backdrop {
+    position: fixed;
+    width: $max-size;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: $color-black;
+    opacity: .8;
+}
+
+.login-form {
+
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+.paragraph {
+    &__error {
+        color: red;
+        margin: 0;
+        text-align: center;
+    }
+}

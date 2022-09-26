@@ -1,0 +1,12 @@
+@import "../../../sass/variables";
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__image {
+        max-width: 5rem;
+        height: auto;
+    }   
+}
