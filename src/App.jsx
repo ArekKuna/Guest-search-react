@@ -8,17 +8,23 @@ import './App.scss';
 
 function App() {
 
-    const LoginState = useContext(AuthContext);
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+    }
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+    }
 
     return (
         <AuthContext.Provider
             value={{
-                LoginState: isLoggedIn,
+                isLoggedIn: isLoggedIn,
             }}
         >
-            <Header />
+            <Header onLogin={handleLogin} onLogout={handleLogout} />
             <Main />
         </AuthContext.Provider>
     );

@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 
+import AuthContext from "../../Store/Auth-context";
 import Section from "../Section/Section";
 import Card from "../Card/Card";
 import Title from "../Title/Title";
@@ -9,6 +10,7 @@ import "./Main.scss";
 
 const Main = () => {    
 
+    const LoginState = useContext(AuthContext);
     const [searchInput, setSearchInput] = useState("");
 
     const handleSearchInput = (event) => {
@@ -17,7 +19,7 @@ const Main = () => {
 
     return (
         <main className="main">
-            <Section sectionClassName="section section--search">
+            {LoginState.isLoggedIn && <Section sectionClassName="section section--search">
                 <Card cardClassName="card card--search">
                     <Title
                         titleBoxClass="title title--search"
@@ -37,10 +39,10 @@ const Main = () => {
                         onChange={handleSearchInput}
                     />
                 </Card>
-            </Section>
-            <Section sectionClassName="section section--guests">
+            </Section>}
+            {LoginState.isLoggedIn && <Section sectionClassName="section section--guests">
 
-            </Section>
+            </Section>}
         </main>
     );
 }

@@ -9,39 +9,40 @@ import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 import "./Header.scss";
 
-const Header = () => {
-
+const Header = ({ onLogin, onLogout }) => {
     const [openLoginForm, setOpenLoginForm] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem("isLoggedIn")) {
             setIsLoggedIn(true);
-            console.log("CHECK")
+            console.log("CHECK");
         }
-    },[])
+    }, []);
 
     const handleOpenLoginFormModal = () => {
         setOpenLoginForm(true);
-    }
+    };
 
     const handleBackdropClose = () => {
         setOpenLoginForm(false);
-    }
+    };
 
     const handleLogin = () => {
         setIsLoggedIn(true);
         setOpenLoginForm(false);
-    }
+        onLogin();
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("isLoggedIn");
-        setIsLoggedIn(false)
-    }
+        setIsLoggedIn(false);
+        onLogout();
+    };
 
     const handleCancelClick = () => {
         setOpenLoginForm(false);
-    }
+    };
 
     return (
         <header className="header">
@@ -92,7 +93,7 @@ const Header = () => {
             {openLoginForm &&
                 ReactDOM.createPortal(
                     <LoginFormModal
-                        onClick={handleBackdropClose}
+                        onBackdropClick={handleBackdropClose}
                         onCancel={handleCancelClick}
                         onConfirm={handleLogin}
                     />,
@@ -100,6 +101,6 @@ const Header = () => {
                 )}
         </header>
     );
-}
+};
 
 export default Header;

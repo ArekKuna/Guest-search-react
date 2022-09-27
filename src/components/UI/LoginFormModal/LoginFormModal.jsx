@@ -6,8 +6,7 @@ import Card from "../Card/Card";
 
 import "./LoginFormModal.scss";
 
-const LoginFormModal = ({onClick, onCancel, onConfirm}) => {
-
+const LoginFormModal = ({ onBackdropClick, onCancel, onConfirm }) => {
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [emailIsValid, setEmailIsValid] = useState(1);
@@ -15,43 +14,45 @@ const LoginFormModal = ({onClick, onCancel, onConfirm}) => {
     const [isFormValid, setIsFormValid] = useState();
 
     useEffect(() => {
-        setIsFormValid(emailInput.includes("@") && passwordInput.trim().length >= 7);
-    }, [emailInput, passwordInput])
+        setIsFormValid(
+            emailInput.includes("@") && passwordInput.trim().length >= 7
+        );
+    }, [emailInput, passwordInput]);
 
     const handleEmailInput = (event) => {
         setEmailInput(event.target.value);
-    }
+    };
 
     const handlePasswordInput = (event) => {
         setPasswordInput(event.target.value);
-    }
+    };
 
     const handleEmailValidation = () => {
         setEmailIsValid(emailInput.includes("@"));
-    }
+    };
 
     const handlePasswordValidation = () => {
         setPasswordIsValid(passwordInput.trim().length > 6);
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        localStorage.setItem("isLoggedIn", "1")
+        localStorage.setItem("isLoggedIn", "1");
 
         setEmailInput("");
         setPasswordInput("");
 
         onConfirm();
-    }
+    };
 
     const handleCloseLoginFormModal = () => {
         onCancel();
-    }
+    };
 
     return (
         <>
-            <div className="backdrop" onClick={onClick}></div>
+            <div className="backdrop" onClick={onBackdropClick}></div>
             <Card cardClassName="card card--login-form">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-form__header">
@@ -115,6 +116,6 @@ const LoginFormModal = ({onClick, onCancel, onConfirm}) => {
             </Card>
         </>
     );
-}
+};
 
 export default LoginFormModal;
