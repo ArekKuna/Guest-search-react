@@ -24,7 +24,7 @@
         border-bottom: 3px solid $color-black;
         background-color: transparent;
         padding: .5rem;
-        transition: width .2s;
+        transition: all .5s;
         
 
         &:focus {
@@ -33,12 +33,17 @@
             background-color: $color-white;
             outline: none;
             background-color: $color-secondary;
+
+            &::placeholder {
+                opacity: 1;
+            }
         }
 
         &::placeholder {
             text-align: center;
             color: $color-white;
-            opacity: .7;
+            opacity: .5;
+            transition: all .5s;
         }
     }
 

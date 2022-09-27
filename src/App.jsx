@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import AuthContext from './components/Store/Auth-context';
 import Header from './components/UI/Header/Header';
@@ -10,6 +10,13 @@ function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+        if (localStorage.getItem("isLoggedIn")) {
+            setIsLoggedIn(true);
+            console.log("CHECK");
+        }
+    }, []);
+    
     const handleLogin = () => {
         setIsLoggedIn(true);
     }

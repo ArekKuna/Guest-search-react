@@ -22,4 +22,20 @@
         background-color: $color-secondary;
         margin: 5rem 0;
     }
+
+    &--guests {
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        border-color: $color-white;
+        background-color: $color-secondary;
+        margin: 5rem 0;
+    }
+
+    &--guest {
+        width: 20%;
+        display: flex;
+        background-color: $color-error;
+        color: $color-white;
+    }
 }

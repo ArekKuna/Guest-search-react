@@ -10,6 +10,7 @@ import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import "./Header.scss";
 
 const Header = ({ onLogin, onLogout }) => {
+    
     const [openLoginForm, setOpenLoginForm] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
