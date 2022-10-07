@@ -7,16 +7,16 @@ import "./GuestsList.scss";
 
 const GuestsList = ({onInput}) => {
 
-    const [users, setUsers] = useState([]);
+    const [guests, setguests] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = () => {
         setIsLoading(true);
-        fetch("https://fakestoreapi.com/users")
+        fetch('https://dummyjson.com/users?limit=100')
             .then((res) => res.json())
             .then((data) => {
                 setIsLoading(false);
-                setUsers(data);
+                setguests(data.users);
             });
     };
 
@@ -24,16 +24,15 @@ const GuestsList = ({onInput}) => {
         fetchData();
     }, []);
 
-    const filteredUsers = users.filter((guest) => {
+    const filteredUsers = guests.filter((guest) => {
         return (
-            guest.name.firstname
+            guest.firstName
                 .toLowerCase()
                 .includes(onInput.toLowerCase()) ||
-            guest.name.lastname
+            guest.lastName
                 .toLowerCase()
                 .includes(onInput.toLowerCase())
-        );
-    });
+    )});
 
     return (
         <>
@@ -41,7 +40,7 @@ const GuestsList = ({onInput}) => {
                 <Loader
                     BoxClassName="loader"
                     paragraphClassName="loader__content"
-                    text="Just a moment we are loading your guests list"
+                    text="Just a moment we are loading your guests list..."
                 />
             )}
             {!isLoading && (
@@ -50,21 +49,20 @@ const GuestsList = ({onInput}) => {
                         <Card cardClassName="card card--guest" key={user.id}>
                             <li className="guests-list-item">
                                 <div className="guests-list__card">
-                                    <div className="guests-list__image">
-                                        <div>PHOTO</div>
+                                    <div className="guests-list__image-box">
+                                        <img className="guests-list__image" alt="user avatar" src={user.image}></img>
                                     </div>
                                     <div className="guests-list__data">
-                                        <div>{user.name.firstname}</div>{" "}
-                                        <div>{user.name.lastname}</div>
+                                        <div>Name: {user.firstName}</div>
+                                        <div>{user.lastName}</div>
                                     </div>
                                     <div className="guests-list__adress">
-                                        <div>{user.address.street}</div>
-                                        <div>{user.address.city}</div>
-                                        <div>{user.address.zipcode}</div>
+                                        <div>Street: {user.address.address}</div>
+                                        <div>City: {user.address.city}</div>
                                     </div>
                                     <div className="guests-list__contact">
-                                        <div>{user.phone}</div>
-                                        <div>{user.email}</div>
+                                        <div>Phone: {user.phone}</div>
+                                        <div>E-mail: {user.email}</div>
                                     </div>
                                 </div>
                             </li>
