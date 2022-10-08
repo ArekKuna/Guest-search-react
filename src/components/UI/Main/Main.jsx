@@ -11,8 +11,9 @@ import "./Main.scss";
 
 const Main = () => {    
 
-    const LoginState = useContext(AuthContext);
     const [searchInput, setSearchInput] = useState(""); 
+
+    const ctxAuth = useContext(AuthContext);
 
     const handleSearchInput = (event) => {
         setSearchInput(event.target.value);
@@ -20,7 +21,7 @@ const Main = () => {
 
     return (
         <main className="main">
-            {LoginState.isLoggedIn && (
+            {ctxAuth.isLoggedIn && (
                 <Section sectionClassName="section section--search">
                     <Card cardClassName="card card--search">
                         <Title
@@ -43,9 +44,9 @@ const Main = () => {
                     </Card>
                 </Section>
             )}
-            {LoginState.isLoggedIn && (
+            {ctxAuth.isLoggedIn && (
                 <Section sectionClassName="section section--guests">
-                    {LoginState.isLoggedIn && (
+                    {ctxAuth.isLoggedIn && (
                         <Title
                             titleBoxClass="title title--section"
                             contentClass="title__content--section"

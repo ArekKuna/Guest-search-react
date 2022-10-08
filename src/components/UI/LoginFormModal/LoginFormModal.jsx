@@ -38,8 +38,6 @@ const LoginFormModal = ({ onBackdropClick, onCancel, onConfirm }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        localStorage.setItem("isLoggedIn", "1");
-
         setEmailInput("");
         setPasswordInput("");
 

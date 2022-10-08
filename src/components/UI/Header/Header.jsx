@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import ReactDOM from "react-dom";
 
 import Logo from "../Logo/Logo";
@@ -6,20 +6,15 @@ import Title from "./Title/Title";
 import HeaderNavigation from "../HeaderNavigation/HeaderNavigation";
 import Button from "../Button/Button";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
+import AuthContext from "../../Store/Auth-context";
 
 import "./Header.scss";
 
-const Header = ({ onLogin, onLogout }) => {
+const Header = () => {
     
     const [openLoginForm, setOpenLoginForm] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(() => {
-        if (localStorage.getItem("isLoggedIn")) {
-            setIsLoggedIn(true);
-            console.log("CHECK");
-        }
-    }, []);
+    const ctxAuth = useContext(AuthContext)
 
     const handleOpenLoginFormModal = () => {
         setOpenLoginForm(true);
@@ -30,15 +25,12 @@ const Header = ({ onLogin, onLogout }) => {
     };
 
     const handleLogin = () => {
-        setIsLoggedIn(true);
         setOpenLoginForm(false);
-        onLogin();
+        ctxAuth.onLogin();
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn");
-        setIsLoggedIn(false);
-        onLogout();
+        ctxAuth.onLogout();
     };
 
     const handleCancelClick = () => {
@@ -47,7 +39,7 @@ const Header = ({ onLogin, onLogout }) => {
 
     return (
         <header className="header">
-            {!isLoggedIn && (
+            {!ctxAuth.isLoggedIn && (
                 <>
                     <Logo boxClassName="logo" imgClassName="logo__image" />
                     <Title
@@ -64,7 +56,7 @@ const Header = ({ onLogin, onLogout }) => {
                     />
                 </>
             )}
-            {isLoggedIn && (
+            {ctxAuth.isLoggedIn && (
                 <>
                     <Logo boxClassName="logo" imgClassName="logo__image" />
                     <Title
